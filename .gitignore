@@ -1,0 +1,6 @@
+*.swp
+.vs
+*.vcxproj.user
+/build
+Win32
+x64
