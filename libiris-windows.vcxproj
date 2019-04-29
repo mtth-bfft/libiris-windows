@@ -142,10 +142,17 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\appcontainer.c" />
+    <ClCompile Include="src\instantiate.c" />
+    <ClCompile Include="src\mem.c" />
+    <ClCompile Include="src\policy.c" />
     <ClCompile Include="src\version.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\libiris-windows.h" />
+    <ClInclude Include="include\instantiate.h" />
+    <ClInclude Include="include\mem.h" />
+    <ClInclude Include="include\policy.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
