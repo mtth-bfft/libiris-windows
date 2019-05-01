@@ -25,7 +25,7 @@ int libiris_policy_free(libiris_policy_t *pol)
    if (pol == NULL)
       return ERROR_INVALID_PARAMETER;
 
-   return safe_free(pol);
+   return safe_free(&(pol));
 }
 
 int policy_check(libiris_policy_t *pol)

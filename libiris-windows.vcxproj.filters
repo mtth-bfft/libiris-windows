@@ -27,6 +27,9 @@
     <ClInclude Include="include\instantiate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\appcontainer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\version.c">

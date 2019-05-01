@@ -73,17 +73,21 @@
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)\include</IncludePath>
+    <TargetName>$(ProjectName)-$(Platform)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)\include</IncludePath>
+    <TargetName>$(ProjectName)-$(Platform)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)\include</IncludePath>
+    <TargetName>$(ProjectName)-$(Platform)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)\include</IncludePath>
+    <TargetName>$(ProjectName)-$(Platform)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -93,8 +97,11 @@
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <PostBuildEvent>
-      <Command>mkdir "$(ProjectDir)\build" &amp; mkdir "$(ProjectDir)\build\include" &amp; copy "$(SolutionDir)$(Platform)\$(Configuration)\libiris-windows.lib" "$(ProjectDir)\build\libiris-windows-x86.lib" /Y &amp; copy "$(ProjectDir)\include\libiris-windows.h" "$(ProjectDir)\build\include" /Y</Command>
+      <Command>mkdir "$(SolutionDir)$(Platform)\$(Configuration)\include" &amp; copy "$(SolutionDir)\include\libiris-windows.h" "$(SolutionDir)$(Platform)\$(Configuration)\include" /Y</Command>
     </PostBuildEvent>
+    <Lib>
+      <AdditionalDependencies>Userenv.lib</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -104,8 +111,11 @@
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <PostBuildEvent>
-      <Command>mkdir "$(ProjectDir)\build" &amp; mkdir "$(ProjectDir)\build\include" &amp; copy "$(SolutionDir)$(Platform)\$(Configuration)\libiris-windows.lib" "$(ProjectDir)\build\libiris-windows-x64.lib" /Y &amp; copy "$(ProjectDir)\include\libiris-windows.h" "$(ProjectDir)\build\include" /Y</Command>
+      <Command>mkdir "$(SolutionDir)$(Platform)\$(Configuration)\include" &amp; copy "$(SolutionDir)\include\libiris-windows.h" "$(SolutionDir)$(Platform)\$(Configuration)\include" /Y</Command>
     </PostBuildEvent>
+    <Lib>
+      <AdditionalDependencies>Userenv.lib</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -121,8 +131,11 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>mkdir "$(ProjectDir)\build" &amp; mkdir "$(ProjectDir)\build\include" &amp; copy "$(SolutionDir)$(Platform)\$(Configuration)\libiris-windows.lib" "$(ProjectDir)\build\libiris-windows-x86.lib" /Y &amp; copy "$(ProjectDir)\include\libiris-windows.h" "$(ProjectDir)\build\include" /Y</Command>
+      <Command>mkdir "$(SolutionDir)$(Platform)\$(Configuration)\include" &amp; copy "$(SolutionDir)\include\libiris-windows.h" "$(SolutionDir)$(Platform)\$(Configuration)\include" /Y</Command>
     </PostBuildEvent>
+    <Lib>
+      <AdditionalDependencies>Userenv.lib</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -138,8 +151,11 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>mkdir "$(ProjectDir)\build" &amp; mkdir "$(ProjectDir)\build\include" &amp; copy "$(SolutionDir)$(Platform)\$(Configuration)\libiris-windows.lib" "$(ProjectDir)\build\libiris-windows-x64.lib" /Y &amp; copy "$(ProjectDir)\include\libiris-windows.h" "$(ProjectDir)\build\include" /Y</Command>
+      <Command>mkdir "$(SolutionDir)$(Platform)\$(Configuration)\include" &amp; copy "$(SolutionDir)\include\libiris-windows.h" "$(SolutionDir)$(Platform)\$(Configuration)\include" /Y</Command>
     </PostBuildEvent>
+    <Lib>
+      <AdditionalDependencies>Userenv.lib</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\appcontainer.c" />
@@ -149,6 +165,7 @@
     <ClCompile Include="src\version.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\appcontainer.h" />
     <ClInclude Include="include\libiris-windows.h" />
     <ClInclude Include="include\instantiate.h" />
     <ClInclude Include="include\mem.h" />

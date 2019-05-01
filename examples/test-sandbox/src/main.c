@@ -28,12 +28,16 @@ int main()
       goto cleanup;
    }
 
+   printf(" [.] Child process created, waiting for it to exit...\n");
+
    res = libiris_instance_wait(pProcess, 0);
    if (res != 0)
    {
       _ftprintf(stderr, TEXT(" [!] Error: unable to wait for sandboxed process to exit, code %d\n"), res);
       goto cleanup;
    }
+
+   printf(" [.] Child process exited\n");
 
 cleanup:
    if (pProcess != NULL)

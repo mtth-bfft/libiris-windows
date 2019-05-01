@@ -31,7 +31,7 @@ int safe_alloc(SIZE_T dwBytes, PVOID *pBuffer)
    if (res != 0)
       return res;
    
-   if (pBuffer == NULL)
+   if (pBuffer == NULL || *pBuffer != NULL)
       return ERROR_INVALID_PARAMETER;
 
    pRes = HeapAlloc(hPrivateHeap, HEAP_ZERO_MEMORY, dwBytes);
@@ -65,13 +65,18 @@ int safe_realloc(SIZE_T dwBytes, PVOID *pBuffer)
    return 0;
 }
 
-int safe_free(PVOID pBuffer)
+int safe_free(PVOID *pBuffer)
 {
+   PVOID pTmp = *pBuffer;
    int res = init_heap();
    if (res != 0)
       return res;
 
-   if (!HeapFree(hPrivateHeap, 0, pBuffer))
+   if (pBuffer == NULL || *pBuffer == NULL)
+      return ERROR_INVALID_PARAMETER;
+
+   *pBuffer = NULL;
+   if (!HeapFree(hPrivateHeap, 0, pTmp))
       return GetLastError();
    return 0;
 }
